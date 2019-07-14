@@ -38,27 +38,55 @@ A collection of linux sysadmin/devops interview questions. Feel free to contribu
 #### [[⬆]](#toc) <a name='general'>General Questions:</a>
 
 * What did you learn yesterday/this week?
-* Talk about your preferred development/administration environment. (OS, Editor, Browsers, Tools etc.)
+* Talk about your preferred development/administration environment. (OS, Editor,
+  Browsers, Tools etc.)  
+Answer: Windows, NotePad++, Visual Studio Code, Chrome. 
 * Tell me about the last major Linux project you finished.
+
 * Tell me about the biggest mistake you've made in [some recent time period] and how you would do it differently today. What did you learn from this experience?
 * Why we must choose you?
 * What function does DNS play on a network?
-* What is HTTP?
-* What is an HTTP proxy and how does it work?
+* What is HTTP?  
+Answer: Hyper Text Transfer Protocol
+
+* What is an HTTP proxy and how does it work?  
+Answer: An http proxy forwards http requests from an http client to an http
+server, and receives responses from server and forwards back to the http
+client.
+
 * Describe briefly how HTTPS works.
 * What is SMTP? Give the basic scenario of how a mail message is delivered via SMTP.
-* What is RAID? What is RAID0, RAID1, RAID5, RAID10?
+* What is RAID? What is RAID0, RAID1, RAID5, RAID10?  
+Answer: RAID is Redundant Array of Inexpensive/Independent Disks.   
+RAID 0, stripping without parity  
+RAID 1, mirroring.  
+RAID 5: one parity drive.  
+RAID 10: Raid 1+0. 
+
 * What is a level 0 backup? What is an incremental backup?
+Answer: 
+
 * Describe the general file system hierarchy of a Linux system.
-* Which difference have between public and private SSH key?
+* Which difference have between public and private SSH key?  
+  Answer: Two pairs of public and private keys are used by SSH. Host
+  private/public keys are created when ssh server is setup. User private/public
+  keys are created by user on cient machine. Public key is used to encrypt data
+  and private key is used to decrypt data. Ssh clients use host public key to encrypt
+  data and the ssh server use host private key to decrypt data recieved. The ssh
+  server uses the user public key to encrypt data and send to the ssh client.
+  And the ssh client uses the user private key to decrypt data received.
 
 
 #### [[⬆]](#toc) <a name='simple'>Simple Linux Questions:</a>
 
-* What is the name and the UID of the administrator user?
-* How to list all files, including hidden ones, in a directory?
-* What is the Unix/Linux command to remove a directory and its contents?
+* What is the name and the UID of the administrator user?  
+Answer: the name is root and the UID is 0.
+* How to list all files, including hidden ones, in a directory?  
+Answer: ls -a  
+* What is the Unix/Linux command to remove a directory and its contents?  
+Answer: rm -rf
 * Which command will show you free/used memory? Does free memory exist on Linux?
+Answer: top, free and /proc/meminfo. free shows the memory of a snapshot. 
 * How to search for the string "my konfu is the best" in files of a directory recursively?
 * How to connect to a remote server or what is SSH?
 * How to get all environment variables and how can you use them?
@@ -67,16 +95,31 @@ A collection of linux sysadmin/devops interview questions. Feel free to contribu
 * What command will show the available disk space on the Unix/Linux system?
 * What commands do you know that can be used to check DNS records?
 * What Unix/Linux commands will alter a files ownership, files permissions?
-* What does ```chmod +x FILENAME``` do?
+* What does ```chmod +x FILENAME``` do?  
+Answer: make the file executable.
+
 * What does the permission 0750 on a file mean?
 * What does the permission 0750 on a directory mean?
 * How to add a new system user without login permissions?
 * How to add/remove a group from a user?
 * What is a bash alias?
+Answer: Alias is a shortcut to 
 * How do you set the mail address of the root/a user?
-* What does CTRL-c do?
-* What does CTRL-d do?
-* What does CTRL-z do?
+* What does CTRL-c do?  
+Answer: Send SIGINT, usually abort the program
+* What does CTRL-d do?  
+Answer: Send EOF or exit() for terminal program. 
+
+* What does CTRL-z do?  
+Answer: Send SIGSTP to the current process, make the process stopped and
+become a background process. bg command can send SIGCONT to the process. If
+the process is not waiting for standard input, it will run in the background.
+If the process is waiting for standard input, it will remain stopped because bg
+will not reconnect standart input to the process. To make the process enter
+into running state, we can use fg command, which will connect the process to
+standard input. 
+
+https://superuser.com/questions/746350/stopped-process-doesnt-continue-to-work-after-sending-sigcont
 * What is in /etc/services?
 * How to redirect STDOUT and STDERR in bash? (> /dev/null 2>&1)
 * What is the difference between UNIX and Linux.
