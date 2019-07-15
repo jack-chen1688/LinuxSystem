@@ -102,11 +102,12 @@ Answer: make the file executable.
 * What does the permission 0750 on a directory mean?
 * How to add a new system user without login permissions?
 * How to add/remove a group from a user?
-* What is a bash alias?
+* What is a bash alias?  
 Answer: Alias is a shortcut to 
 * How do you set the mail address of the root/a user?
 * What does CTRL-c do?  
 Answer: Send SIGINT, usually abort the program
+
 * What does CTRL-d do?  
 Answer: Send EOF or exit() for terminal program. 
 
@@ -120,10 +121,23 @@ into running state, we can use fg command, which will connect the process to
 standard input. 
 
 https://superuser.com/questions/746350/stopped-process-doesnt-continue-to-work-after-sending-sigcont
+
 * What is in /etc/services?
-* How to redirect STDOUT and STDERR in bash? (> /dev/null 2>&1)
+
+* How to redirect STDOUT and STDERR in bash? (> /dev/null 2>&1)  
+Answer:   
+1. Redirect STDOUT and STDERR to the file of err.txt.
+man -k hello > err.txt 2>&1 
+Here the error info will be redirect to the file of err.txt.
+
+2. Redirect STDERR to STDOUT, and redirect STDOUT to err.txt
+man -k hello 2>&1 >err.txt
+   Here err.txt will have nothing. Error info will still be printed on the
+   terminal.
+
 * What is the difference between UNIX and Linux.
 * What is the difference between Telnet and SSH?
+
 * Explain the three load averages and what do they indicate. What command can be used to view the load averages?
 * Can you name a lower-case letter that is not a valid option for GNU ```ls```?
 * What is a Linux kernel module?
@@ -134,10 +148,20 @@ https://superuser.com/questions/746350/stopped-process-doesnt-continue-to-work-a
 #### [[⬆]](#toc) <a name='medium'>Medium Linux Questions:</a>
 
 * What do the following commands do and how would you use them?
- * ```tee```
- * ```awk```
- * ```tr```
+ * ```tee```  
+ Answer: read from standard input and write to standard output and files.  
+ Example 1. ls | tee file1 file2 file2  
+ Example 2. program | tee file1 file2
+ 
+ * ```awk```  
+ Answer: a prwerful program to analyze and proces files. 
+ Example 1. awk -F: '{print $1}' /etc/passwd
+ * ```tr```  
+ Answer: tr stands for translate.  
+ Example 1. to replace all white places of a file to tab.  
+ cat file1 | tr [:space:] '\t'
  * ```cut```
+ Answer: 
  * ```tac```
  * ```curl```
  * ```wget```
@@ -152,7 +176,11 @@ https://superuser.com/questions/746350/stopped-process-doesnt-continue-to-work-a
  * ```tcpdump```
  * ```lsof```
 * What does an ```&``` after a command do?
-* What does ```& disown``` after a command do?
+Answer: start the command to run it at background
+* What does ```& disown``` after a command do? 
+Answer: the command will run at background and removed from the current shell. 
+Exit the current shell will not kill 
+
 * What is a packet filter and how does it work?
 * What is Virtual Memory?
 * What is swap and what is it used for?
@@ -212,8 +240,14 @@ https://superuser.com/questions/746350/stopped-process-doesnt-continue-to-work-a
 * What is an atomic operation?
 * Your freshly configured http server is not running after a restart, what can you do?
 * What kind of keys are in ~/.ssh/authorized_keys and what it is this file used for?
-* I've added my public ssh key into authorized_keys but I'm still getting a password prompt, what can be wrong?
+* I've added my public ssh key into authorized_keys but I'm still getting a
+  password prompt, what can be wrong?  
+  Answer: Permission of the directory .ssh and the file authorized_keys could be
+  wrong.
+
 * Did you ever create RPM's, DEB's or solaris pkg's?
+Answer: Use rpmbuild to build RPMs.
+
 * What does ```:(){ :|:& };:``` do on your system?
 * How do you catch a Linux signal on a script?
 * Can you catch a SIGKILL?
@@ -242,7 +276,8 @@ https://superuser.com/questions/746350/stopped-process-doesnt-continue-to-work-a
 * What is localhost and why would ```ping localhost``` fail?
 * What is the similarity between "ping" & "traceroute" ? How is traceroute able to find the hops.
 * What is the command used to show all open ports and/or socket connections on a machine?
-* Is 300.168.0.123 a valid IPv4 address?
+* Is 300.168.0.123 a valid IPv4 address?  
+Answer: No, 300 is larger than 256.
 * Which IP ranges/subnets are "private" or "non-routable" (RFC 1918)?
 * What is a VLAN?
 * What is ARP and what is it used for?
@@ -264,7 +299,9 @@ https://superuser.com/questions/746350/stopped-process-doesnt-continue-to-work-a
 
 #### [[⬆]](#toc) <a name='mysql'>MySQL questions:</a>
 
-* How do you create a user?
+* How do you create a user?  
+Answer: Use CREATE USER command.
+
 * How do you provide privileges to a user?
 * What is the difference between a "left" and a "right" join?
 * Explain briefly the differences between InnoDB and MyISAM.
@@ -277,6 +314,7 @@ https://superuser.com/questions/746350/stopped-process-doesnt-continue-to-work-a
 
 * Can you describe your workflow when you create a script?
 * What is GIT?
+Answer: It's a version control system.
 * What is a dynamically/statically linked file?
 * What does "./configure && make && make install" do?
 * What is puppet/chef/ansible used for?
@@ -304,12 +342,26 @@ https://superuser.com/questions/746350/stopped-process-doesnt-continue-to-work-a
 * Tell me about a creative way that you've used SSH?
 * You have deleted by error a running script, what could you do to restore it?
 * What will happen on 19 January 2038?
-* How to reboot server when reboot command is not responding?
+* How to reboot server when reboot command is not responding?  
+  Answer: If the sysrq is enabled, /proc/sys/kernel/sysrq has a value of 1. We
+  can use the magic SysReq commands to do perform a safe reboot using the
+  sequence of "reisub".  
+  reisub- Raising Elephant Is So Utterly Boring.  
+  They represent unRaw, Terminate, Kill, Sync, Unmount, Reboot.
+
+  https://en.wikipedia.org/wiki/Magic_SysRq_key
+
+
 
 
 #### [[⬆]](#toc) <a name='demo'>Demo Time:</a>
 
 * Unpack test.tar.gz without man pages or google.
+Answer:
+To unpack 
+tar -xzvf test.tar.gz 
+To pack
+tar -czvf test.tar.gz test_dir
 * Remove all "*.pyc" files from testdir recursively?
 * Search for "my konfu is the best" in all *.py files.
 * Replace the occurrence of "my konfu is the best" with "I'm a linux jedi master" in all *.txt files.
@@ -319,7 +371,9 @@ https://superuser.com/questions/746350/stopped-process-doesnt-continue-to-work-a
 * Write a ```get_prim``` method in python/perl/bash/pseudo.
 * Find all files which have been accessed within the last 30 days.
 * Explain the following command ```(date ; ps -ef | awk '{print $1}' | sort | uniq | wc -l ) >> Activity.log```
-* Write a script to list all the differences between two directories.
+* Write a script to list all the differences between two directories.  
+Answer: diff -Naur dir1 dir2
+
 * In a log file with contents as ```<TIME> : [MESSAGE] : [ERROR_NO] - Human readable text``` display summary/count of specific error numbers that occurred every hour or a specific hour.
 
 
