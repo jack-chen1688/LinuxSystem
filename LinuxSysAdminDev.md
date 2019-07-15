@@ -334,14 +334,37 @@ Answer: It's a version control system.
 
 #### [[⬆]](#toc) <a name='fun'>Fun Questions:</a>
 
-* A careless sysadmin executes the following command: ```chmod 444 /bin/chmod ``` - what do you do to fix this?
+* A careless sysadmin executes the following command: ```chmod 444 /bin/chmod ``` - what do you do to fix this?  
+Answer: use some other way to call chmod system call to fix the /bin/chmod.  
+a. use install command with option -m 
+b. use pyhon or perl script to call chmod function. For python, we can use os.chmod function.
+
 * I've lost my root password, what can I do?
-* I've rebooted a remote server but after 10 minutes I'm still not able to ssh into it, what can be wrong?
-* If you were stuck on a desert island with only 5 command-line utilities, which would you choose?
+Answer: 
+Approach 1: use a live CD (a Knoppix CD or some other live CD).
+1. Boot into the live CD.
+2. Mount the partition of the drive that contains /etc/passwd.
+3. Run chroot 
+4. Run passwd to change root password and then reboot. 
+Approach 2. Change grub2 entry 
+1. Change grub boot entry and boot the entry
+a. change ro to rw for root partition
+b. add init=/bin/bash
+2. After booting, run passwd to change password.
+
+* I've rebooted a remote server but after 10 minutes I'm still not able to ssh into it, what can be wrong?  
+
+* If you were stuck on a desert island with only 5 command-line utilities, which
+  would you choose?      
+
 * You come across a random computer and it appears to be a command console for the universe. What is the first thing you type?
 * Tell me about a creative way that you've used SSH?
 * You have deleted by error a running script, what could you do to restore it?
-* What will happen on 19 January 2038?
+* What will happen on 19 January 2038?  
+  Answer: A signed integer was used to represent the number of seconds passed
+  since 1 January 1970. The implementation will not be able to encode the time
+  correctly after some time on 19 January 2038.
+
 * How to reboot server when reboot command is not responding?  
   Answer: If the sysrq is enabled, /proc/sys/kernel/sysrq has a value of 1. We
   can use the magic SysReq commands to do perform a safe reboot using the
@@ -356,12 +379,12 @@ Answer: It's a version control system.
 
 #### [[⬆]](#toc) <a name='demo'>Demo Time:</a>
 
-* Unpack test.tar.gz without man pages or google.
-Answer:
-To unpack 
-tar -xzvf test.tar.gz 
-To pack
-tar -czvf test.tar.gz test_dir
+* Unpack test.tar.gz without man pages or google.  
+Answer:  
+To unpack   
+tar -xzvf test.tar.gz   
+To pack  
+tar -czvf test.tar.gz test_dir  
 * Remove all "*.pyc" files from testdir recursively?
 * Search for "my konfu is the best" in all *.py files.
 * Replace the occurrence of "my konfu is the best" with "I'm a linux jedi master" in all *.txt files.
