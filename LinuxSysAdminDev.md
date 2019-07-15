@@ -68,13 +68,13 @@ Answer:
 
 * Describe the general file system hierarchy of a Linux system.
 * Which difference have between public and private SSH key?  
-  Answer: Two pairs of public and private keys are used by SSH. Host
-  private/public keys are created when ssh server is setup. User private/public
-  keys are created by user on cient machine. Public key is used to encrypt data
-  and private key is used to decrypt data. Ssh clients use host public key to encrypt
-  data and the ssh server use host private key to decrypt data recieved. The ssh
-  server uses the user public key to encrypt data and send to the ssh client.
-  And the ssh client uses the user private key to decrypt data received.
+Answer: Two pairs of public and private keys are used by SSH. Host
+private/public keys are created when ssh server is setup. User private/public
+keys are created by user on cient machine. Public key is used to encrypt data
+and private key is used to decrypt data. Ssh clients use host public key to encrypt
+data and the ssh server use host private key to decrypt data recieved. The ssh
+server uses the user public key to encrypt data and send to the ssh client.
+And the ssh client uses the user private key to decrypt data received.
 
 
 #### [[⬆]](#toc) <a name='simple'>Simple Linux Questions:</a>
@@ -126,14 +126,13 @@ https://superuser.com/questions/746350/stopped-process-doesnt-continue-to-work-a
 
 * How to redirect STDOUT and STDERR in bash? (> /dev/null 2>&1)  
 Answer:   
-1. Redirect STDOUT and STDERR to the file of err.txt.
-man -k hello > err.txt 2>&1 
-Here the error info will be redirect to the file of err.txt.
-
-2. Redirect STDERR to STDOUT, and redirect STDOUT to err.txt
-man -k hello 2>&1 >err.txt
-   Here err.txt will have nothing. Error info will still be printed on the
-   terminal.
+a. Redirect STDOUT and STDERR to the file of err.txt.
+man -k hello > err.txt 2>&1  
+Here the error info will be redirect to the file of err.txt.  
+b. Redirect STDERR to STDOUT, and redirect STDOUT to err.txt  
+man -k hello 2>&1 >err.txt  
+Here err.txt will have nothing. Error info will still be printed on the
+terminal.
 
 * What is the difference between UNIX and Linux.
 * What is the difference between Telnet and SSH?
@@ -160,17 +159,59 @@ man -k hello 2>&1 >err.txt
  Answer: tr stands for translate.  
  Example 1. to replace all white places of a file to tab.  
  cat file1 | tr [:space:] '\t'
- * ```cut```
- Answer: 
- * ```tac```
+ * ```cut```  
+ Answer: the command cuts sections of from each line of files and writing the
+ result to standard output.  
+ Example: print out the first field of file name.csv using delimiter of ":".  
+ cut -d ":" -f 1 name.csv
+ * ```tac```  
+ Answer: the command concatenates and prints files in reverse.
  * ```curl```
+ Answer: the command can used to transfer a url. It supports many protocols
+ like FTP, HTTP, HTTPS, SCP, SFTP, SMBS, TELNET, TFTP etc... It supports login
+ and cookie. It offers upload and send capabilities.
+ See examples below.  
+ Example:  
+ curl --user user:pass --cookie-jar ./somefile https://xyz.com/a  
+ curl --cookie ./somefile https://xyz.com/b
+ 
  * ```wget```
- * ```watch```
+ Answer: Compare to curl, wget is able to download recursively. It supports
+ FTP, HTTP and HTTPS. Support only HTTP POST, no upload and send capabilities.
+ * ```watch```  
+Answer: The command execute a program periodically, showing results full
+screen.  
+Example:   
+a. run date command every 2 second.  
+watch -n 2 date  
+b. run df command every second  
+watch -n 1 df
  * ```head```
- * ```tail```
+Answer: display first part of a file  
+Example:
+head -n 10 /etc/passwd
+ * ```tail```  
+Answer: display last part of a file. When specify -f, output appended data as
+the file grows.    
+Example: tail -f -n 10 /var/log/messages 
  * ```less```
+Answer: The command allows you to view the contents of a file and navigaet
+through file. "less" tool is faster than "more" because it does not load the
+entire file at once. F command for the tool will keep trying to read when the
+end of file is reached. Can monitor the tail of a file like "tail -f".  
+Example 1: less /var/log/autho.log  
+
  * ```cat```
+Answer: The command concatenates files and prints out on the standard output.  
+Example: cat file1 file2 file3 > file4  # concatates file1, file2, file3 to
+file 4. 
  * ```touch```
+Answer: The command can update the access and modification time of a file.  
+Example 1: touch -c -t 201603051015 a.txt  
+-c creates a file only when the file does not exist.  
+Example 2: touch -a file1  # only change the access time of file1.  
+Exapmle 3: touch -m file1  # change both the access and modification time of
+file1.  
  * ```sar```
  * ```netstat```
  * ```tcpdump```
