@@ -150,8 +150,9 @@ terminal.
 * What is a Linux kernel module?
 * Walk me through the steps in booting into single user mode to troubleshoot a problem.
 * Walk me through the steps you'd take to troubleshoot a 404 error on a web application you administer.
-* What is ICMP protocol? Why do you need to use?
-
+* What is ICMP protocol? Why do you need to use?  
+Answer: ICMP is Internet Control Message Protocol.
+https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol
 #### [[⬆]](#toc) <a name='medium'>Medium Linux Questions:</a>
 
 * What do the following commands do and how would you use them?
@@ -226,9 +227,21 @@ Can monitor different activities include CPU, memory, swap, IO and kernel.
 Example 1: sar -P 1 2 3 # show cpu 1 usage 3 times with interval of 2 seconds.  
 Example 2: sar -r 2 3  # report memory utilization statistics.
 
- * ```netstat```
+ * ```netstat```  
+Answer: The command means network statistics.  
+Example 1: netstat -rn  # show routing table
+Example 2: netstat -au  # show all udp connections. -a means both listening and non-listening.
+Example 2: netstat -at  # show all tcp connections
+
  * ```tcpdump```
+ Answer: a packet sniffer tool. Can capture tcp, udp, icmp packets.
+ Example 1: tcpdump -w 001.pcap -i eth0 
+ Example 2: tcpdump -r 001.pcap  
+
  * ```lsof```
+Answer
+Example 1:  lsof
+https://www.howtoforge.com/linux-lsof-command/
 * What does an ```&``` after a command do?
 Answer: start the command to run it at background
 * What does ```& disown``` after a command do? 
@@ -261,11 +274,14 @@ Exit the current shell will not kill
 * How to know which process listens on a specific port?
 Answer: 
 1. lsof -i :80  
-2. netstat -ltnp | grep -w ':80' 
+2. netstat -ltnp | grep -w ':80'  #-l listening, -t tcp, -n numeric, -p process id.
 https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/
 https://www.tecmint.com/find-out-which-process-listening-on-a-particular-port/
 * What is a zombie process and what could be the cause of it?
-* You run a bash script and you want to see its output on your terminal and save it to a file at the same time. How could you do it?
+* You run a bash script and you want to see its output on your terminal and save
+  it to a file at the same time. How could you do it?
+Answer: Use pipe to redirect the output to tee command and specify the file to
+write to for the tee command. 
 * Explain what echo "1" > /proc/sys/net/ipv4/ip_forward does.
 * Describe briefly the steps you need to take in order to create and install a valid certificate for the site https://foo.example.com.
 * Can you have several HTTPS virtual hosts sharing the same IP?
