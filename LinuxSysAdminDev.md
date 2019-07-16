@@ -102,9 +102,17 @@ Answer: make the file executable.
 * What does the permission 0750 on a directory mean?
 * How to add a new system user without login permissions?
 * How to add/remove a group from a user?
+Answer:  
+To add a group to a user  
+usermod -a -G groupname username  
+To remove a group from a user  
+gpasswd -d username groupname
+
 * What is a bash alias?  
-Answer: Alias is a shortcut to 
+Answer: Alias is an abbreviation of a long command sequence. 
+
 * How do you set the mail address of the root/a user?
+
 * What does CTRL-c do?  
 Answer: Send SIGINT, usually abort the program
 
@@ -213,6 +221,11 @@ Example 2: touch -a file1  # only change the access time of file1.
 Exapmle 3: touch -m file1  # change both the access and modification time of
 file1.  
  * ```sar```
+Answer: System Activity Reportor, sar, is a utitility from sysstat package.
+Can monitor different activities include CPU, memory, swap, IO and kernel.  
+Example 1: sar -P 1 2 3 # show cpu 1 usage 3 times with interval of 2 seconds.  
+Example 2: sar -r 2 3  # report memory utilization statistics.
+
  * ```netstat```
  * ```tcpdump```
  * ```lsof```
@@ -246,6 +259,11 @@ Exit the current shell will not kill
 * What happens to a child process that dies and has no parent process to wait for it and what’s bad about this?
 * Explain briefly each one of the process states.
 * How to know which process listens on a specific port?
+Answer: 
+1. lsof -i :80  
+2. netstat -ltnp | grep -w ':80' 
+https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/
+https://www.tecmint.com/find-out-which-process-listening-on-a-particular-port/
 * What is a zombie process and what could be the cause of it?
 * You run a bash script and you want to see its output on your terminal and save it to a file at the same time. How could you do it?
 * Explain what echo "1" > /proc/sys/net/ipv4/ip_forward does.
