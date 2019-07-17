@@ -42,10 +42,10 @@ A collection of linux sysadmin/devops interview questions. Feel free to contribu
   Browsers, Tools etc.)  
 Answer: Windows, NotePad++, Visual Studio Code, Chrome. 
 * Tell me about the last major Linux project you finished.
-
 * Tell me about the biggest mistake you've made in [some recent time period] and how you would do it differently today. What did you learn from this experience?
 * Why we must choose you?
 * What function does DNS play on a network?
+Answer: Domain Name System, is used to convert host name to ip address. 
 * What is HTTP?  
 Answer: Hyper Text Transfer Protocol
 
@@ -55,13 +55,28 @@ server, and receives responses from server and forwards back to the http
 client.
 
 * Describe briefly how HTTPS works.
-* What is SMTP? Give the basic scenario of how a mail message is delivered via SMTP.
+Answer: 
+* What is SMTP? Give the basic scenario of how a mail message is delivered via
+  SMTP.
+Answer: Simple mail transfer protocol.
+Basic steps to send a mail message
+HELO: Respond to server with its identify of FQDN (full qualified domain name)
+MAIL FROM: Specify the originating email address. 
+RCPT TO: Speficy a recipient. 
+DATA: Transter the email body. End of data sequence is a new line, a single
+period and another new line. 
+QUIT: end the session
+https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol
+
 * What is RAID? What is RAID0, RAID1, RAID5, RAID10?  
 Answer: RAID is Redundant Array of Inexpensive/Independent Disks.   
 RAID 0, stripping without parity  
 RAID 1, mirroring.  
-RAID 5: one parity drive.  
-RAID 10: Raid 1+0. 
+RAID 5: one parity drive.  When one drive failed, rebuild needs to read from
+all other drivers. 
+RAID 10: Raid 1+0. Multiple RAID 1 form a RAID0. Top level is RAID0, sublevel
+is RAID 1. Requires at least 4 drives. When a drive failed, rebuild only needs
+to read from its mirror drive. 
 
 * What is a level 0 backup? What is an incremental backup?
 Answer: 
