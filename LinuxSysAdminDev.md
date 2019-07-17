@@ -238,9 +238,15 @@ Example 2: netstat -at  # show all tcp connections
  Example 1: tcpdump -w 001.pcap -i eth0 
  Example 2: tcpdump -r 001.pcap  
 
- * ```lsof```
-Answer
-Example 1:  lsof
+ * ```lsof```  
+Answer: lsof means list open files.
+Example 1:  lsof   #list all open files
+Example 2:  lsof -u $user   #list all files opened by $user
+Example 3:  lsof -t $filename #list IDs of processes that opened a file
+Example 4:  lsof -i 4tcp@bar:80  
+The above command means list tcp specific files based on ipv4, tcp port 80 at host bar. 
+4 - ipv4, tcp - tcp protocol, bar - host, :80 - port 80 
+
 https://www.howtoforge.com/linux-lsof-command/
 * What does an ```&``` after a command do?
 Answer: start the command to run it at background
@@ -293,6 +299,7 @@ write to for the tee command.
 * What is the difference between these two commands?
  * ```myvar=hello```
  * ```export myvar=hello```
+ Answer: 
 * How many NTP servers would you configure in your local ntp.conf?
 * What does the column 'reach' mean in ```ntpq -p``` output?
 * You need to upgrade kernel at 100-1000 servers, how you would do this?
