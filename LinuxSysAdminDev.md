@@ -184,12 +184,20 @@ Here err.txt will have nothing. Error info will still be printed on the
 terminal.
 
 * What is the difference between UNIX and Linux.
+Answer: 
+1. Code bases are different.
+2. Unix  
 * What is the difference between Telnet and SSH?
 
 * Explain the three load averages and what do they indicate. What command can be used to view the load averages?
 * Can you name a lower-case letter that is not a valid option for GNU ```ls```?
+Answer: letter e
 * What is a Linux kernel module?
-* Walk me through the steps in booting into single user mode to troubleshoot a problem.
+Answer: a piece of codes that can be loaded into the kernel to extend kernel's
+functionality. THe codes can also be unloaded from the kernel.  
+* Walk me through the steps in booting into single user mode to troubleshoot a
+  problem.
+Answer: Edit grub menu entry, add "single" booting parameter and boot the entry.
 * Walk me through the steps you'd take to troubleshoot a 404 error on a web application you administer.
 * What is ICMP protocol? Why do you need to use?  
 Answer: ICMP is Internet Control Message Protocol.
