@@ -78,10 +78,35 @@ RAID 10: Raid 1+0. Multiple RAID 1 form a RAID0. Top level is RAID0, sublevel
 is RAID 1. Requires at least 4 drives. When a drive failed, rebuild only needs
 to read from its mirror drive. 
 
-* What is a level 0 backup? What is an incremental backup?
-Answer: 
+* What is a level 0 backup? What is an incremental backup?  
+Answer: level 0 backup is a full backup with meta data created. tar can do
+level 0 and incremental backup.  
+--listed-incremental=file or -g file option can create an incremental backup.
+To do level 0 backup, we can remove the snapshot file before running the tar or 
+by supplying the '--level=0' option.  
+When use -g option first time to do tar dump, we have level 0 update. And meta
+data, the snapshot file, will be created.  When use -g option again, we have 
+incremental backup which will only dump the changed files. And the meta data
+will be updated.   
+Incremental dumps depend crucially on time stamp. Results will be unreliable if
+you modifiy a file's time stamps or if you set the clock backwards.  
+a. https://www.gnu.org/software/tar/manual/html_node/Incremental-Dumps.html  
+b. man tar
 
 * Describe the general file system hierarchy of a Linux system.
+Answer:   
+/: root directory
+/dev: hold device files
+/bin: essential user binaries
+/sbin: system binaries
+/mnt: mounted filesystem
+/lib: shared libraries
+/etc: system configuration files
+/home: user home directories.
+/boot: boot loader, grub files
+/usr: User utilities and applications
+/tmp: temporary files
+
 * Which difference have between public and private SSH key?  
 Answer: Two pairs of public and private keys are used by SSH. Host
 private/public keys are created when ssh server is setup. User private/public
@@ -114,6 +139,7 @@ Answer: top, free and /proc/meminfo. free shows the memory of a snapshot.
 Answer: make the file executable.
 
 * What does the permission 0750 on a file mean?
+Answer: 4-read, 2-write, 1-executable
 * What does the permission 0750 on a directory mean?
 * How to add a new system user without login permissions?
 * How to add/remove a group from a user?
@@ -421,7 +447,9 @@ Answer: It's a version control system.
 * How do you create a new postgres user?
 * What is a virtual IP address? What is a cluster?
 * How do you print all strings of printable characters present in a file?
+
 * How do you find shared library dependencies?
+Answer: use command "ldd $executable"
 * What is Automake and Autoconf?
 * ./configure shows an error that libfoobar is missing on your system, how could you fix this, what could be wrong?
 * What are the advantages/disadvantages of script vs compiled program?
