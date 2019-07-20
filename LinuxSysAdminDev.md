@@ -116,12 +116,10 @@ private keys are ketp secret. Public key is used to encrypt data and private key
 is used to decrypt data. Ssh clients use host public key to encrypt data and the 
 ssh server use host private key to decrypt data recieved. The ssh server uses the 
 user public key to encrypt data and send to the ssh client. And the ssh client uses 
-the user private key to decrypt data received.
-
+the user private key to decrypt data received.  
 ssh used public and private keys for authentication. Symmetrical encryption is used
 during a session for communication. The symmetrical encryption key is created by a key
-exchange algorithm. 
-
+exchange algorithm.  
 https://hackernoon.com/ssh-keys-a-primer-7ac8b790e849
 https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process
 #### [[⬆]](#toc) <a name='simple'>Simple Linux Questions:</a>
