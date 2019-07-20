@@ -55,7 +55,8 @@ server, and receives responses from server and forwards back to the http
 client.
 
 * Describe briefly how HTTPS works.
-Answer: 
+Answer: Hypertext Transfer Protocol Secure.
+
 * What is SMTP? Give the basic scenario of how a mail message is delivered via
   SMTP.
 Answer: Simple mail transfer protocol.
@@ -110,13 +111,19 @@ Answer:
 * Which difference have between public and private SSH key?  
 Answer: Two pairs of public and private keys are used by SSH. Host
 private/public keys are created when ssh server is setup. User private/public
-keys are created by user on cient machine. Public key is used to encrypt data
-and private key is used to decrypt data. Ssh clients use host public key to encrypt
-data and the ssh server use host private key to decrypt data recieved. The ssh
-server uses the user public key to encrypt data and send to the ssh client.
-And the ssh client uses the user private key to decrypt data received.
+keys are created by user on cient machine. Pubic keyes are shared to peer while 
+private keys are ketp secret. Public key is used to encrypt data and private key
+is used to decrypt data. Ssh clients use host public key to encrypt data and the 
+ssh server use host private key to decrypt data recieved. The ssh server uses the 
+user public key to encrypt data and send to the ssh client. And the ssh client uses 
+the user private key to decrypt data received.
 
+ssh used public and private keys for authentication. Symmetrical encryption is used
+during a session for communication. The symmetrical encryption key is created by a key
+exchange algorithm. 
 
+https://hackernoon.com/ssh-keys-a-primer-7ac8b790e849
+https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process
 #### [[⬆]](#toc) <a name='simple'>Simple Linux Questions:</a>
 
 * What is the name and the UID of the administrator user?  
