@@ -203,9 +203,19 @@ functionality. THe codes can also be unloaded from the kernel.
 * Walk me through the steps in booting into single user mode to troubleshoot a
   problem.
 Answer: Edit grub menu entry, add "single" booting parameter and boot the entry.
-* Walk me through the steps you'd take to troubleshoot a 404 error on a web application you administer.
+* Walk me through the steps you'd take to troubleshoot a 404 error on a web
+  application you administer.  
+Answer:  
+a. Retry the URL  
+b. Check for errors in URL  
+c. Move one directory at a time in the URL until you get something.  
+d. Clear cache.  
+e. Try a different browser and on a different machine.
+
 * What is ICMP protocol? Why do you need to use?  
 Answer: ICMP is Internet Control Message Protocol.
+Ping utility is implemented using ICMP echo request and echo reply messages. 
+
 https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol
 #### [[⬆]](#toc) <a name='medium'>Medium Linux Questions:</a>
 
@@ -403,13 +413,18 @@ Answer: Use rpmbuild to build RPMs.
 * A running process gets ```EAGAIN: Resource temporarily unavailable``` on reading a socket. How can you close this bad socket/file descriptor without killing the process?
 * What do you control with swapiness?
 * How do you change TCP stack buffers? How do you calculate it?
+https://www.cyberciti.biz/faq/linux-tcp-tuning/
 * What is Huge Tables? Why isn't it enabled by default? Why and when use it?
 * What is LUKS? How to use it?
 
 
 #### [[⬆]](#toc) <a name='network'>Networking Questions:</a>
 
-* What is localhost and why would ```ping localhost``` fail?
+* What is localhost and why would ```ping localhost``` fail?  
+Answer: localhost corresponding to host address 127.0.0.1. Two factors that
+could cause ```ping localhost``` fail.   
+1. firewall blocked it. 
+2. /proc/sys/net/ipv4/icmp_echo_ignore_all has value 1.  
 * What is the similarity between "ping" & "traceroute" ? How is traceroute able to find the hops.
 * What is the command used to show all open ports and/or socket connections on a machine?
 * Is 300.168.0.123 a valid IPv4 address?  
@@ -455,8 +470,20 @@ Answer: It's a version control system.
 * What does "./configure && make && make install" do?
 * What is puppet/chef/ansible used for?
 * What is Nagios/Zenoss/NewRelic used for?
-* What is Jenkins/TeamCity/GoCI used for?
-* What is the difference between Containers and VMs?
+* What is Jenkins/TeamCity/GoCI used for?  
+  Answer: They are used for continuous integration. When developers integrate
+  into a shared repository, the integration will be verified by an automated
+  build and automated tests. This way, we can detect errors quickly and locate
+  them more easily.
+
+* What is the difference between Containers and VMs?  
+Answer: VMs emulate a hardware system. Within each virtual machine runs a
+guest operating system. Each VM has its own binaries, libraries and
+applications that it services and may consume many gigabytes.  
+Containers sit on top of a physical server and its host OS. Each contrainer
+shares the host OS kernel and usually binaries and libraries too. Containers
+are light, only megabytes in size and just take seconds to start. 
+  
 * How do you create a new postgres user?
 * What is a virtual IP address? What is a cluster?
 * How do you print all strings of printable characters present in a file?
