@@ -405,7 +405,9 @@ Answer: Use rpmbuild to build RPMs.
 * How do you catch a Linux signal on a script?
 * Can you catch a SIGKILL?
 * What's happening when the Linux kernel is starting the OOM killer and how does it choose which process to kill first?
-* Describe the linux boot process with as much detail as possible, starting from when the system is powered on and ending when you get a prompt.
+* Describe the linux boot process with as much detail as possible, starting from
+  when the system is powered on and ending when you get a prompt.
+
 * What's a chroot jail?  
 Answer: chroot changes the apparent root directory of a process and its children. A
 protgram that runs in such a modified environment cannot access files outside
@@ -423,6 +425,7 @@ your own before other share libraries are loaded.
 * What are cgroups? Can you specify a scenario where you could use them?
 * How can you remove/delete a file with file-name consisting of only non-printable/non-type-able characters?
 * How can you increase or decrease the priority of a process in Linux?
+Answer: renice 
 
 
 #### [[⬆]](#toc) <a name='expert'>Expert Linux Questions:</a>
