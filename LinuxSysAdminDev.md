@@ -134,8 +134,15 @@ Answer: rm -rf
 Answer: top, free and /proc/meminfo. free shows the memory of a snapshot. 
 * How to search for the string "my konfu is the best" in files of a directory recursively?
 * How to connect to a remote server or what is SSH?
-* How to get all environment variables and how can you use them?
+* How to get all environment variables and how can you use them?  
+Answer: printenv or env can print out all environment variables. The env
+command can be used to run a command in a modified environment. The usage is
+below:  
+env [NAME=VALUE] [COMMAND] [ARG]
 * I get "command not found" when I run ```ifconfig -a```. What can be wrong?
+Answer: 
+1. The corresponding package is not found. 
+2. ifconfig is not in the PATH, try /sbin/ifconfig.
 * What happens if I type TAB-TAB?
 * What command will show the available disk space on the Unix/Linux system?
 * What commands do you know that can be used to check DNS records?
@@ -399,9 +406,19 @@ Answer: Use rpmbuild to build RPMs.
 * Can you catch a SIGKILL?
 * What's happening when the Linux kernel is starting the OOM killer and how does it choose which process to kill first?
 * Describe the linux boot process with as much detail as possible, starting from when the system is powered on and ending when you get a prompt.
-* What's a chroot jail?
-* When trying to umount a directory it says it's busy, how to find out which PID holds the directory?
+* What's a chroot jail?  
+Answer: chroot changes the apparent root directory of a process and its children. A
+protgram that runs in such a modified environment cannot access files outside
+the designated directory. The modified environment is callled a chroot jail.  
+https://en.wikipedia.org/wiki/Chroot
+* When trying to umount a directory it says it's busy, how to find out which PID
+  holds the directory?
+Answer: lsof $directory
 * What's LD_PRELOAD and when it's used?
+Answer: LD_PRELOAD is an optional environmental variable containing one or
+more paths to shared libraries. It can be used to preload a shared library of
+your own before other share libraries are loaded. 
+
 * You ran a binary and nothing happened. How would you debug this?
 * What are cgroups? Can you specify a scenario where you could use them?
 * How can you remove/delete a file with file-name consisting of only non-printable/non-type-able characters?
