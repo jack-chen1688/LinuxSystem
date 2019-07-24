@@ -403,7 +403,7 @@ write to for the tee command.
 * Which Linux file types do you know?
 * What is the difference between a process and a thread? And parent and child processes after a fork system call?
 * What is the difference between exec and fork?
-* What is "nohup" used for?
+* What is "nohup" used for?  
 Answer: Simiar to disown -h. A command that runs using nohup will not receive
 SIGHUP when the current shell exits. Standard output will be redirected to
 nohup.out by default if standnot specified. The reference below seems not
@@ -415,8 +415,12 @@ https://unix.stackexchange.com/questions/3886/difference-between-nohup-disown-an
 
 * What is the difference between these two commands?
  * ```myvar=hello```
- * ```export myvar=hello```
- Answer: 
+ * ```export myvar=hello```  
+Answer: export make the variable visible to any process running from the
+shell. A variable exported can be seen by the "env" command. If the variable
+   eis not exported, we cannot see in the "env" command.  Also, the variable is
+   only visible to the shell.  
+
 * How many NTP servers would you configure in your local ntp.conf?
 * What does the column 'reach' mean in ```ntpq -p``` output?
 * You need to upgrade kernel at 100-1000 servers, how you would do this?
@@ -449,7 +453,14 @@ Answer: Use rpmbuild to build RPMs.
 
 * What does ```:(){ :|:& };:``` do on your system?
 * How do you catch a Linux signal on a script?
+Answer: use trap in bash script.  
+trap [COMMANDS] [SIGNALS]
+An example to print a mesage when SIGINT or SIGTERM is caught is below:  
+trap "echo Booh!" SIGINT SIGTERM
+
 * Can you catch a SIGKILL?
+Answer: SIGKILL(9) and SIGSTOP(17, 19, 23) cannot be caught, blocked or
+ignored.  
 * What's happening when the Linux kernel is starting the OOM killer and how does it choose which process to kill first?
 * Describe the linux boot process with as much detail as possible, starting from
   when the system is powered on and ending when you get a prompt.
