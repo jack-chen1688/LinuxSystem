@@ -145,15 +145,18 @@ Answer:
 2. ifconfig is not in the PATH, try /sbin/ifconfig.
 * What happens if I type TAB-TAB?
 * What command will show the available disk space on the Unix/Linux system?
-* What commands do you know that can be used to check DNS records?
+Answer: df command.
+* What commands do you know that can be used to check DNS records?  
+Answer: nslookup can be used. An example is below.
+nslookup www.yahoo.com
 * What Unix/Linux commands will alter a files ownership, files permissions?
 * What does ```chmod +x FILENAME``` do?  
 Answer: make the file executable.
-
 * What does the permission 0750 on a file mean?
 Answer: 4-read, 2-write, 1-executable
 * What does the permission 0750 on a directory mean?
 * How to add a new system user without login permissions?
+
 * How to add/remove a group from a user?
 Answer:  
 To add a group to a user  
@@ -322,8 +325,21 @@ https://www.howtoforge.com/linux-lsof-command/
 * What does an ```&``` after a command do?
 Answer: start the command to run it at background
 * What does ```& disown``` after a command do? 
-Answer: the command will run at background and removed from the current shell. 
-Exit the current shell will not kill 
+Answer: the command will run at background and removed from the current shell.
+Exit the current shell will not send SIGHUP to the command to kill it. 
+More info about disown is below:  
+disown -a remove all jobs from the current shell
+disown -r remove running jobs from the current shell. 
+disown %1 remove only job 1 from the current shell
+Jobs removed from the current shell will not recieve SIGHUP when the current
+shell exit. 
+disown -h %1 will only mark the job 1 such that SIGHUP sent to the shell will
+not be sent to the job 1. When list jobs using "jobs" command, we can still
+see it. 
+disown will not block SIGHUP signal from other processes.
+
+
+
 
 * What is a packet filter and how does it work?
 * What is Virtual Memory?
@@ -388,6 +404,15 @@ write to for the tee command.
 * What is the difference between a process and a thread? And parent and child processes after a fork system call?
 * What is the difference between exec and fork?
 * What is "nohup" used for?
+Answer: Simiar to disown -h. A command that runs using nohup will not receive
+SIGHUP when the current shell exits. Standard output will be redirected to
+nohup.out by default if standnot specified. The reference below seems not
+correct on Ubuntu when it mention that "One of the effects (the naming one) is that the
+process won't receive any sent SIGHUP". I've tried on Ubuntu 19.04 and found
+still we can use kill -SIGHUP pid to terminate the process that started using
+hup.  
+https://unix.stackexchange.com/questions/3886/difference-between-nohup-disown-and
+
 * What is the difference between these two commands?
  * ```myvar=hello```
  * ```export myvar=hello```
