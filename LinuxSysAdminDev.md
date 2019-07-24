@@ -331,7 +331,28 @@ Exit the current shell will not kill
 * What is an A record, an NS record, a PTR record, a CNAME record, an MX record?
 * Are there any other RRs and what are they used for?
 * What is a Split-Horizon DNS?
-* What is the sticky bit?
+* What is the sticky bit?  
+Answer: Sticky bit is a user ownership access right flag that can be assigned to
+files and directories.  
+When a sticky bit is set for a directory, the files in the directory can only
+be renamed or removed by the owner of the file or the super user.
+To add a sticky bit, use chmod +t $file or chmod +t directory.
+To remoev a sticky bit, use chmod -t $file or chmod -t directory.  
+Sticky bit corresponds to the lowest bit of the special bits. For a permission of
+1666, 1 means the sticky bit set and 666 means rw bits are set for ugo.
+Two other special special permission bits are setuid bit and setguid bit.
+setuid corresponds to 4(bit 2) of the special bits. 
+An example of setuid is /usr/bin/passwd. The executable has setuid set and is
+owned by root , when any user run the executable, the process will have
+priviledge of root to update /etc/shadow to change the user's password.  
+setgid correpsonds to 2(bit 1) of the special permission bits. when set on a
+file and any user run the file will have the priviledge of the file's group. 
+When setgid is set for a directory, the new files and subdirectories created
+within it will inherit its group id.  
+https://linuxconfig.org/how-to-use-special-permissions-the-setuid-setgid-and-sticky-bits   
+https://en.wikipedia.org/wiki/Setuid  
+https://en.wikipedia.org/wiki/Sticky_bit  
+
 * What does the immutable bit do to a file?
 * What is the difference between hardlinks and symlinks? What happens when you remove the source to a symlink/hardlink?
 * What is an inode and what fields are stored in an inode?
