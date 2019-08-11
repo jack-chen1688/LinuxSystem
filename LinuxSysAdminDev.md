@@ -368,8 +368,22 @@ farsightsecurity.com. 3600 IN MX 10 mail.fsi.io.
 In this case, mail intended for farsightsecurity.com email addresses get sent
 via host mail.fsi.io.  
 
-* Are there any other RRs and what are they used for?
-* What is a Split-Horizon DNS?
+* Are there any other RRs and what are they used for?  
+Answer: Here are some other DNS resource records. 
+AAAA record: map domain name to IPV6 addresses
+PTR record: Pointer record, maps IPv4 or IPv6 addresses to domain names. 
+TXT record: Hold descriptive text, which is general information about a domain
+name such as who is hosting it, contact person, phone number.  
+SOA record: Start of Authorization Record, include properties for the zone
+like name of the primary DNS server, email address of responsible person,
+retry interval, etc...
+
+* What is a Split-Horizon DNS?  
+Answer: Split-Horizon DNS, Split-View DNS, or Split DNS is a facility of a DNS
+implemation that provide different sets of DNS information, selected by the
+source address of the DNS request. For example, seperate DNS servers can be
+provided for internal and external networks 
+
 * What is the sticky bit?  
 Answer: Sticky bit is a user ownership access right flag that can be assigned to
 files and directories.  
