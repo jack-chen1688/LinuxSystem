@@ -369,12 +369,34 @@ https://linuxconfig.org/how-to-use-special-permissions-the-setuid-setgid-and-sti
 https://en.wikipedia.org/wiki/Setuid  
 https://en.wikipedia.org/wiki/Sticky_bit  
 
-* What does the immutable bit do to a file?
+* What does the immutable bit do to a file?  
+Answer: A file with immutable bit cannot be 
+a. modified.  
+b. renamed.  
+c. removed. 
+d. no hard link created by anyone including root.
+Only root(superuser) or a process with  CAP_LINUX_IMMUTABLE capability can
+set/clear the immutable bit to a file.  
+To set the attribute
+chattr +i /path/to/filename
+To secure a directory 
+chattr -R +i /path/to/folder
+To clear the attribute
+chattr -i /path/to/filename
+To check the attribute, we can use the command of lsattr.  
+
 * What is the difference between hardlinks and symlinks? What happens when you remove the source to a symlink/hardlink?
 * What is an inode and what fields are stored in an inode?
 * How to force/trigger a file system check on next reboot?
 * What is SNMP and what is it used for?
-* What is a runlevel and how to get the current runlevel?
+* What is a runlevel and how to get the current runlevel?  
+Answer: A runlevel is a mode that a linux operating system will run in.   
+0 - halt  
+1 - single user text mode  
+3 - multi-user text mode  
+5 - multi-user graphical mode  
+6 - runlevel  
+The command to get the current runlevel is "runlevel". 
 * What is SSH port forwarding?
 * What is the difference between local and remote port forwarding?
 * What are the steps to add a user to a system without using useradd/adduser?
