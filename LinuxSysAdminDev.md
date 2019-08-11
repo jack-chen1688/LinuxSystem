@@ -348,7 +348,13 @@ passing(called DROP) or
 allow it to pass(called ACCEPT)
   
 * What is Virtual Memory?
-* What is swap and what is it used for?
+
+
+* What is swap and what is it used for?  
+Answer: swap is a space on a disk that is used when the amount of physical RAM
+full. When a Linux system runs out of physical RAM, inactive pages are moved
+from the RAM to the swap spae.
+
 * What is an A record, an NS record, a PTR record, a CNAME record, an MX record?
    
 Answer: The meanings of the records are below.
@@ -424,7 +430,11 @@ To check the attribute, we can use the command of lsattr.
 
 * What is the difference between hardlinks and symlinks? What happens when you remove the source to a symlink/hardlink?
 * What is an inode and what fields are stored in an inode?
-* How to force/trigger a file system check on next reboot?
+* How to force/trigger a file system check on next reboot?  
+Answer:   
+a. for root partition, we can create an empty file of /forcefsck to trigger
+file system check on the next reboot by "touch /forcefsck" 
+b. 
 * What is SNMP and what is it used for?
 * What is a runlevel and how to get the current runlevel?  
 Answer: A runlevel is a mode that a linux operating system will run in.   
@@ -477,8 +487,8 @@ https://unix.stackexchange.com/questions/3886/difference-between-nohup-disown-an
  * ```export myvar=hello```  
 Answer: export make the variable visible to any process running from the
 shell. A variable exported can be seen by the "env" command. If the variable
-   eis not exported, we cannot see in the "env" command.  Also, the variable is
-   only visible to the shell.  
+is not exported, we cannot see in the "env" command.  Also, the variable is
+only visible to the shell.  
 
 * How many NTP servers would you configure in your local ntp.conf?
 * What does the column 'reach' mean in ```ntpq -p``` output?
