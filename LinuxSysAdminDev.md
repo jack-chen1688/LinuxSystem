@@ -428,8 +428,24 @@ To clear the attribute
 chattr -i /path/to/filename
 To check the attribute, we can use the command of lsattr.  
 
-* What is the difference between hardlinks and symlinks? What happens when you remove the source to a symlink/hardlink?
-* What is an inode and what fields are stored in an inode?
+* What is the difference between hardlinks and symlinks? What happens when you
+  remove the source to a symlink/hardlink?  
+Answer: A hard link points directly to the i-node of the files. A symbolic link
+is an indirect pointer to a file. Hard links normally require that the link
+and the file reside in the same file system. Only the superuser can create a
+hard link to a directory (when supported by the underlying filesystem). On
+Linux, ext2/ext3/ext4 does not support hard link to a directory. A symbolic link
+does not have such a limit.  
+When the source to a symlink is removed, the content of the file is deleted
+and the symbolic link will become invalid. When the source to a hardlink is
+removed, the content of the file will not be deleted, only the link count in
+the inode will be decreased by 1. The hard link will not be affected. Renaming
+the source will not affect the hard link as well.  
+
+* What is an inode and what fields are stored in an inode?  
+Answer: inode is a data structure that stores all information of a file on
+Linux and other Unix-like operating systems except its name and its actual
+data.    
 * How to force/trigger a file system check on next reboot?  
 Answer:   
 a. for root partition, we can create an empty file of /forcefsck to trigger
@@ -461,11 +477,30 @@ Answer:
 https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/
 https://www.tecmint.com/find-out-which-process-listening-on-a-particular-port/
 * What is a zombie process and what could be the cause of it?
+Anwer: A zombie process is a process which completed execution while its entry
+is still in the process table to allow the parent to read the child's exit
+status. The reason the process is a zombie is because it is "dead" but not yet
+"reaped" by it's parent. Parent processes normally issue the wait system call
+to read the child's exit status and removed the zombie. The kill command will
+not work on zombie process. When a child dies, the parent will receives a
+SIGCHLD signal.  
+https://en.wikipedia.org/wiki/Zombie_process
+
 * You run a bash script and you want to see its output on your terminal and save
   it to a file at the same time. How could you do it?
 Answer: Use pipe to redirect the output to tee command and specify the file to
 write to for the tee command. 
-* Explain what echo "1" > /proc/sys/net/ipv4/ip_forward does.
+* Explain what echo "1" > /proc/sys/net/ipv4/ip_forward does.  
+Answer: This command will enable ip forwarding on Linux so that a machine can
+act as a router. A similar command that does the same is sysctl -w
+net.ipv4.ip_forward=1. We can also set it permanently by writing to
+/etc/sysctl.conf with the following entry.  
+net.ipv4.ip_forward=1.  
+IP forwarding is a concept to make Linux machine to send data from one network
+to other. It can be enabled on a linux machine with two nics on two different
+networks respectively.  
+https://www.linuxnix.com/how-to-implement-ip-forwarding-in-linux/
+
 * Describe briefly the steps you need to take in order to create and install a valid certificate for the site https://foo.example.com.
 * Can you have several HTTPS virtual hosts sharing the same IP?
 * What is a wildcard certificate?
