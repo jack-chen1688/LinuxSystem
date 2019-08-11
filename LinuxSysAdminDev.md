@@ -338,13 +338,36 @@ not be sent to the job 1. When list jobs using "jobs" command, we can still
 see it. 
 disown will not block SIGHUP signal from other processes.
 
-
-
-
-* What is a packet filter and how does it work?
+* What is a packet filter and how does it work?  
+Answer: Packet filtering is a firewall technique used to control network
+access by mornitoring outgoing and incoming packets and allowing them to pass
+or halt based on the source and destination IP addresses, protocols and ports.  
+A packet filter is a program in software firewall that examines the headers of
+each packet based on a specific rules to decide to prevent it from
+passing(called DROP) or
+allow it to pass(called ACCEPT)
+  
 * What is Virtual Memory?
 * What is swap and what is it used for?
 * What is an A record, an NS record, a PTR record, a CNAME record, an MX record?
+   
+Answer: The meanings of the records are below.
+A record: map domain names to IPv4 addresses. An example is below.  
+www.farsightsecurity.com. 3600 IN A 104.244.13.104
+NS record: specify the name servers used by a domain. For example:  
+ucla.edu. 3600 IN NS ns3.dns.ucla.edu.
+ucla.edu. 3600 IN NS ns2.dns.ucla.edu.
+ucla.edu. 3600 IN NS ns1.dns.ucla.edu.
+ucla.edu. 3600 IN NS ns4.dns.ucla.edu.
+CNAME record: make it possible for one domain name to point to another domain
+name. For example:  
+admissions.uoregon.edu. 300 IN CNAME drupal-cluster3.uoregon.edu.
+MX record: defines the Mail eXchange records for a domain, or where inbound
+email for a domain should be directed:  
+farsightsecurity.com. 3600 IN MX 10 mail.fsi.io.  
+In this case, mail intended for farsightsecurity.com email addresses get sent
+via host mail.fsi.io.  
+
 * Are there any other RRs and what are they used for?
 * What is a Split-Horizon DNS?
 * What is the sticky bit?  
