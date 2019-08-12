@@ -646,7 +646,7 @@ Answer: Use CREATE USER command.
 
 * Can you describe your workflow when you create a script?
 * What is GIT?
-Answer: It's a distributed version control system.
+Answer: It's a free and open-source distributed version control system developed by Linus.
 * What is a dynamically/statically linked file?  
 Answer: A file linked to dynamic library/static libary.  
 dynamic library: The library code is position independent. Needs to be available
@@ -683,8 +683,20 @@ Answer: strings /path/to/filename
 * How do you find shared library dependencies?
 Answer: use command "ldd $executable"
 * What is Automake and Autoconf?
-* ./configure shows an error that libfoobar is missing on your system, how could you fix this, what could be wrong?
+* ./configure shows an error that libfoobar is missing on your system, how could
+  you fix this, what could be wrong?  
+Answer: Configuration cannot find the libfoobar in LD_LIBRARY_PATH or the
+packagnot instaslled. To fix it, we can install the package or build it from
+its source. If libfoobar is already is installed, we can check /etc/ld.so.conf
+and add the library into it.  
 * What are the advantages/disadvantages of script vs compiled program?
+Answer: Advantages of script vs compiled program  
+a. No need to compile.  
+b. Faster to develop and size is small.
+c. Can be more portable.   
+Disadvantages of script vs compiled program  
+a. Execution is slower.  
+b. Source code is open and cannot be hided from end user.  
 * What's the relationship between continuous delivery and DevOps?
 * What are the important aspects of a system of continuous integration and deployment?
 * How would you enable network file sharing within AWS that would allow EC2 instances in multiple availability zones to share data?
