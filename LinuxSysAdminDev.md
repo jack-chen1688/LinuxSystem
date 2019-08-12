@@ -646,8 +646,19 @@ Answer: Use CREATE USER command.
 
 * Can you describe your workflow when you create a script?
 * What is GIT?
-Answer: It's a version control system.
-* What is a dynamically/statically linked file?
+Answer: It's a distributed version control system.
+* What is a dynamically/statically linked file?  
+Answer: A file linked to dynamic library/static libary.  
+dynamic library: The library code is position independent. Needs to be available
+during compiling and running time. The library codes is only linked but not in
+the executable file. 
+static libary: The library object codes will be linked and become part of the
+executable.  
+There are two ways to use the dynamic library.  
+a. Dynamically linked at run time.  
+b. Dynamically loaded/unloaded and linked during execution using the dynamic
+linking loader system calls such as dlopen, dlsym and dlclose.   
+http://www.yolinux.com/TUTORIALS/LibraryArchives-StaticAndDynamic.html  
 * What does "./configure && make && make install" do?
 * What is puppet/chef/ansible used for?
 * What is Nagios/Zenoss/NewRelic used for?
@@ -667,8 +678,8 @@ are light, only megabytes in size and just take seconds to start.
   
 * How do you create a new postgres user?
 * What is a virtual IP address? What is a cluster?
-* How do you print all strings of printable characters present in a file?
-
+* How do you print all strings of printable characters present in a file?  
+Answer: strings /path/to/filename  
 * How do you find shared library dependencies?
 Answer: use command "ldd $executable"
 * What is Automake and Autoconf?
