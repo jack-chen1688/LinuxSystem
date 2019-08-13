@@ -458,13 +458,25 @@ Answer: A runlevel is a mode that a linux operating system will run in.
 1 - single user text mode  
 3 - multi-user text mode  
 5 - multi-user graphical mode  
-6 - runlevel  
+6 - reboot  
 The command to get the current runlevel is "runlevel". 
 * What is SSH port forwarding?
 * What is the difference between local and remote port forwarding?
 * What are the steps to add a user to a system without using useradd/adduser?
-* What is MAJOR and MINOR numbers of special files?
+* What is MAJOR and MINOR numbers of special files?  
+Answer: The MAJOR number of a special file specifies the driver associated
+with the device. The MINOR number is used only by the driver specified by the
+MAJOR number. Other part of the kernel don't use it. It is common for a driver
+to control several devices and the minor number provides a way for the driver
+to differerentiate among them. The MAJOR and MINOR numbers applies to both
+character and block devices.
+From *Linux Device Drivers* 
+
 * Describe the mknod command and when you'd use it.
+Answer: mknod is originally used to create char and block devices that
+populate /dev. With introduction of udev, this is seldomly used in recent
+Linux. 
+
 * Describe a scenario when you get a "filesystem is full" error, but 'df' shows there is free space.
 * Describe a scenario when deleting a file, but 'df' not showing the space being freed.
 * Describe how 'ps' works.
@@ -765,6 +777,7 @@ tar -czvf test.tar.gz test_dir
 * Search for "my konfu is the best" in all *.py files.
 * Replace the occurrence of "my konfu is the best" with "I'm a linux jedi master" in all *.txt files.
 * Test if port 443 on a machine with IP address X.X.X.X is reachable.
+
 * Get http://myinternal.webserver.local/test.html via telnet.
 * How to send an email without a mail client, just on the command line?
 * Write a ```get_prim``` method in python/perl/bash/pseudo.
