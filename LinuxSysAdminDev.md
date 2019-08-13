@@ -480,7 +480,24 @@ Linux.
 * Describe a scenario when you get a "filesystem is full" error, but 'df' shows there is free space.
 * Describe a scenario when deleting a file, but 'df' not showing the space being freed.
 * Describe how 'ps' works.
-* What happens to a child process that dies and has no parent process to wait for it and what’s bad about this?
+Answer: We can use "strace ps" to find out how 'ps' works. On Linux, the
+command will read /proc filesystem to find out process info. The info of
+process with PID is under /proc/PID
+  
+* What happens to a child process that dies and has no parent process to wait
+  for it and what’s bad about this?
+Answer: The process will become a Zombie process. There is a limit of maximum
+number of processes that can run in Linux, which is shown in
+/proc/sys/kernel/pid_max. If there are too many zombie processes, new
+processes cabe started. So if there are too many zombie processes, then no new
+processes can be started.  
+To claim a zombie process, we can send SIGCHLD to its parent. If it is not
+working, we can kill its parent. There is also a trick to use gdb to attach
+the zombie process's parent process to it, call waitpid for the zombie process
+and then detach the parent process.  
+https://serverfault.com/questions/575162/remove-a-zombie-process-from-the-process-table
+https://askubuntu.com/questions/1118894/how-much-is-too-many-zombies-bad
+ 
 * Explain briefly each one of the process states.
 * How to know which process listens on a specific port?
 Answer: 
