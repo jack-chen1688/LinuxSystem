@@ -682,7 +682,14 @@ are light, only megabytes in size and just take seconds to start.
 Answer: strings /path/to/filename  
 * How do you find shared library dependencies?
 Answer: use command "ldd $executable"
-* What is Automake and Autoconf?
+* What is Automake and Autoconf?  
+Answer: Autoconf and Automake are executables of the autotools.  
+Autoconf is used to generate the configure script, from a template named
+configure.ac. The configure script will check all characteristics of the host
+system and generate the makefiles from Makefile.in templates.  
+Autocmake is used to generate complete Makefile.in templates, following GNU
+standards from very simple Makefile.am templates.  
+https://developer.gnome.org/anjuta-build-tutorial/stable/create-autotools.html.en
 * ./configure shows an error that libfoobar is missing on your system, how could
   you fix this, what could be wrong?  
 Answer: Configuration cannot find the libfoobar in LD_LIBRARY_PATH or the
@@ -762,7 +769,15 @@ tar -czvf test.tar.gz test_dir
 * How to send an email without a mail client, just on the command line?
 * Write a ```get_prim``` method in python/perl/bash/pseudo.
 * Find all files which have been accessed within the last 30 days.
-* Explain the following command ```(date ; ps -ef | awk '{print $1}' | sort | uniq | wc -l ) >> Activity.log```
+* Explain the following command ```(date ; ps -ef | awk '{print $1}' | sort |
+  uniq | wc -l ) >> Activity.log```  
+Answer: date; will print out the current system date and time.
+ps -ef will show all processes in full format. awk '{print $1}' will print out
+the first field, which is UID. sort will further sort the UID. And
+uniq will only show the different UIDs. wc -l will count the number of
+different users.  
+So this script will append the current system date and time and then the
+number of active users to the file of Activity.log.  
 * Write a script to list all the differences between two directories.  
 Answer: diff -Naur dir1 dir2
 
