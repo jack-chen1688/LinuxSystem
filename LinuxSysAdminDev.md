@@ -640,12 +640,28 @@ Answer: LD_PRELOAD is an optional environmental variable containing one or
 more paths to shared libraries. It can be used to preload a shared library of
 your own before other share libraries are loaded. 
 
-* You ran a binary and nothing happened. How would you debug this?
+* You ran a binary and nothing happened. How would you debug this?  
+Answer: use strace to debug this.  
 * What are cgroups? Can you specify a scenario where you could use them?
-* How can you remove/delete a file with file-name consisting of only non-printable/non-type-able characters?
+Answer: cgroups(Control Groups) is a kernel feature that can limits, acounts
+for and isolates the resource usage(CPU, memory, disk I/O, network, etc) of a
+collection of processes. It can also be used to "batch job management system
+which start and stop sets of tasks in order to shedule the resources of a machine"
+More about this can be referred to freezer-subsystem.txt in kernel's
+Documentation.  
+* How can you remove/delete a file with file-name consisting of only
+  non-printable/non-type-able characters?   
+Answer:  
+approach 1: move all other files to another directory, and then delete the
+current directory. Create the same directory and move previous files back.  
+approach 2: The difficulty lies in that bash shell interpretation is hard to
+do file name checking for non-printable characters. We can write a python
+script to do this. In the python script, go through the directory and get all
+the files and check whether a file has a name containing non-printable
+characters, and if yes, delete the file.  
+
 * How can you increase or decrease the priority of a process in Linux?
 Answer: renice 
-
 
 #### [[⬆]](#toc) <a name='expert'>Expert Linux Questions:</a>
 
@@ -832,10 +848,15 @@ tar -czvf test.tar.gz test_dir
 * Replace the occurrence of "my konfu is the best" with "I'm a linux jedi master" in all *.txt files.
 * Test if port 443 on a machine with IP address X.X.X.X is reachable.
 
-* Get http://myinternal.webserver.local/test.html via telnet.
+* Get http://myinternal.webserver.local/test.html via telnet.  
+Answer: telnet to port 80 of the host and then issue "get /test.html".
 * How to send an email without a mail client, just on the command line?
+Answer: 
 * Write a ```get_prim``` method in python/perl/bash/pseudo.
-* Find all files which have been accessed within the last 30 days.
+* Find all files which have been accessed within the last 30 days.  
+Answer: find /* -type f -atime -30  
+-30: "less then 30 days"  
++30: "more than 30 days"
 * Explain the following command ```(date ; ps -ef | awk '{print $1}' | sort |
   uniq | wc -l ) >> Activity.log```  
 Answer: date; will print out the current system date and time.
