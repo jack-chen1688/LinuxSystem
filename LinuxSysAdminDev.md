@@ -477,10 +477,27 @@ Answer: mknod is originally used to create char and block devices that
 populate /dev. With introduction of udev, this is seldomly used in recent
 Linux. 
 
-* Describe a scenario when you get a "filesystem is full" error, but 'df' shows there is free space.
+* Describe a scenario when you get a "filesystem is full" error, but 'df' shows
+  there is free space.
+Answer: When the filesystem contains too many small files, inode of the file
+system could be used up. In this case, df will show there is free space in
+Use% but no new files can be created. We can use "df -i" to check inode usage
+shown in IUse%. 
 * Describe a scenario when deleting a file, but 'df' not showing the space being
   freed.
-Answer: 
+Answer: This could occur when the file deleted is still opened by another
+process. Below is an example. 
+A python script of openfile.py is running. It opens a very large file named
+"largefile.txt". The script is below.
+import time  
+file = open("largefile.txt", "w")  
+print("file opened is", file.name)  
+time.sleep(1000)  
+file.close()  
+When the script is running and the file of largefile.xt is deleted, we can use
+lsof +L1 to find the processes that still opens the files that are deleted.
++L1 means to list the files that have been unlinked(link count less than 1).
+
 * Describe how 'ps' works.
 Answer: We can use "strace ps" to find out how 'ps' works. On Linux, the
 command will read /proc filesystem to find out process info. The info of
