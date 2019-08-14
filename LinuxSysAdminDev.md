@@ -685,12 +685,20 @@ could cause ```ping localhost``` fail.
 * Is 300.168.0.123 a valid IPv4 address?  
 Answer: No, 300 is larger than 256.
 * Which IP ranges/subnets are "private" or "non-routable" (RFC 1918)?
+
 * What is a VLAN?
 * What is ARP and what is it used for?
-* What is the difference between TCP and UDP?
+* What is the difference between TCP and UDP?  
+Answer:  
+  TCP: reliable, data devilvery guaranteed, in-order sequencing, retransimission
+  for lost packets, heavyweight of 20 bytes of header.
+  UDP: unreliable, no guarantee of data delivery, no sequencing, no
+  retransmission, lowweight of 8 bytes of header. 
 * What is the purpose of a default gateway?
 * What is command used to show the routing table on a Linux box?
-* A TCP connection on a network can be uniquely defined by 4 things. What are those things?
+* A TCP connection on a network can be uniquely defined by 4 things. What are
+  those things?  
+Answer: source address, destination address, source port and destination port.  
 * When a client running a web browser connects to a web server, what is the source port and what is the destination port of the connection?
 * How do you add an IPv6 address to a specific interface?
 * You have added an IPv4 and IPv6 address to interface eth0. A ping to the v4 address is working but a ping to the v6 address gives you the response ```sendmsg: operation not permitted```. What could be wrong?
