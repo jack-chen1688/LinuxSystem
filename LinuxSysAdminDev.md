@@ -478,7 +478,9 @@ populate /dev. With introduction of udev, this is seldomly used in recent
 Linux. 
 
 * Describe a scenario when you get a "filesystem is full" error, but 'df' shows there is free space.
-* Describe a scenario when deleting a file, but 'df' not showing the space being freed.
+* Describe a scenario when deleting a file, but 'df' not showing the space being
+  freed.
+Answer: 
 * Describe how 'ps' works.
 Answer: We can use "strace ps" to find out how 'ps' works. On Linux, the
 command will read /proc filesystem to find out process info. The info of
@@ -486,11 +488,13 @@ process with PID is under /proc/PID
   
 * What happens to a child process that dies and has no parent process to wait
   for it and what’s bad about this?
-Answer: The process will become a Zombie process. There is a limit of maximum
-number of processes that can run in Linux, which is shown in
-/proc/sys/kernel/pid_max. If there are too many zombie processes, new
-processes cabe started. So if there are too many zombie processes, then no new
-processes can be started.  
+Answer: The process will become a Zombie process. Zombie process released most
+resources it taken and only consumes very little memory for keeping its entry
+in the resource table. So if there are only few Zombie processes, it does not
+affect Linux system much. There is a limit of maximum number of processes that
+can run in Linux, which is shown in /proc/sys/kernel/pid_max. If there are too
+many zombie processes, new processes cabe started. So if there are too many
+zombie processes, then no new processes can be started.  
 To claim a zombie process, we can send SIGCHLD to its parent. If it is not
 working, we can kill its parent. There is also a trick to use gdb to attach
 the zombie process's parent process to it, call waitpid for the zombie process
@@ -499,6 +503,14 @@ https://serverfault.com/questions/575162/remove-a-zombie-process-from-the-proces
 https://askubuntu.com/questions/1118894/how-much-is-too-many-zombies-bad
  
 * Explain briefly each one of the process states.
+Answer: In Linux, we can use top or ps to find out the state of a process is
+in. 
+R: Running or runnable
+D: Uninterruptible sleep (usually IO)
+S: Interruptible sleep (waiting for a event to complete)
+Z: defunct/zombie, terminated but not reaped by its parent. 
+T: stopped, either by a job control signal or because it is traced. 
+  
 * How to know which process listens on a specific port?
 Answer: 
 1. lsof -i :80  
@@ -765,6 +777,14 @@ b. add init=/bin/bash
 * You come across a random computer and it appears to be a command console for the universe. What is the first thing you type?
 * Tell me about a creative way that you've used SSH?
 * You have deleted by error a running script, what could you do to restore it?
+Answer: Since the script is running, its contents is not removed from the file
+system, we can still restore it.  
+Let's say we have a bash script named myscript.sh running. We can run "ps aux
+| grep myscript.sh". It will show a process with command line of "/bin/bash
+myscript.sh" and its pid is PID. The script will be opened by the process.
+Then we can search in /proc/PID/fd/ to find the file descriptor FD. Then we
+can do cat FD > /tmp/myscript.sh to restore the file.  
+
 * What will happen on 19 January 2038?  
   Answer: A signed integer was used to represent the number of seconds passed
   since 1 January 1970. The implementation will not be able to encode the time
